@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import { withRouter } from 'react-router';
 
 const styles = theme => ({
   close: {
@@ -56,7 +57,10 @@ class AppSnackbar extends React.Component {
               key="view posts"
               color="secondary"
               size="small"
-              onClick={this.handleClose}
+              onClick={() => {
+                this.props.history.push('/');
+                this.handleClose();
+              }}
             >
               View Posts
             </Button>,
@@ -80,4 +84,4 @@ AppSnackbar.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(AppSnackbar);
+export default withRouter(withStyles(styles)(AppSnackbar));

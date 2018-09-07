@@ -23,7 +23,8 @@ const styles = theme => ({
   row: {
     '&:nth-of-type(odd)': {
       backgroundColor: theme.palette.background.default
-    }
+    },
+    cursor: 'pointer'
   }
 });
 
@@ -52,7 +53,10 @@ const PostsList = ({ posts, classes, removePost, history }) => {
                 <CustomTableCell>
                   <IconButton
                     aria-label="Delete"
-                    onClick={() => removePost(row.id)}
+                    onClick={e => {
+                      e.stopPropagation();
+                      removePost(row.id);
+                    }}
                   >
                     <DeleteIcon />
                   </IconButton>
